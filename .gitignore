@@ -1,0 +1,6 @@
+# deno LSP
+deno.json
+
+# nix direnv
+.envrc
+.direnv
