@@ -1,4 +1,5 @@
 import { Project } from "https://deno.land/x/ts_morph@15.1.0/mod.ts";
+import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.32-alpha/deno-dom-wasm.ts";
 
 type Param = {
   name: string;
@@ -33,8 +34,40 @@ const output = project.addSourceFileAtPath(
   "./mod.ts",
 );
 
+// TODO: scrape docs for JSDoc comment
+
+async function getDescription(name: string) {
+  const url = `https://developer.bitcoin.org/reference/rpc/${name}.html`;
+  const res = await fetch(url);
+  const html = await res.text();
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  if (doc === null) {
+    throw new Error("Could not parse HTML");
+  }
+  const selection = doc.querySelector(`#${name} > p:nth-child(3)`);
+  if (selection === null) {
+    return "";
+  }
+  const description = selection.textContent;
+  return description;
+}
+
+let descriptions = new Map<string, string>();
+
+// TODO: remove response from methods
+// TODO: add jsdoc
+
 for (const [_, calls] of Object.entries(methods)) {
   for (const call of calls) {
+    // const description = await getDescription(call.name);
+    // descriptions.set(call.name, description);
+
+    const descriptions = JSON.parse(
+      Deno.readTextFileSync("./descriptions.json"),
+    );
+    const description = descriptions[call.name];
+
+    // save descriptions to a file
     const client = clientCopy.getClass("BitcoinRPC");
     if (client === undefined) {
       throw new Error("BitcoinRPC class not found");
@@ -80,6 +113,10 @@ for (const [_, calls] of Object.entries(methods)) {
         );
       });
 
+      methodDeclaration.addJsDoc({
+        description: description,
+      });
+
       for (const param of call.params) {
         methodDeclaration.addParameter({
           name: param.name,
@@ -87,10 +124,15 @@ for (const [_, calls] of Object.entries(methods)) {
         });
       }
 
-      methodDeclaration.setReturnType(`Promise<${call.name}Result>`);
+      // methodDeclaration.setReturnType(`Promise<${call.name}Result>`);
     } catch (e) {
       console.log(`${call.name} failed with ${e}`);
     }
   }
   await project.save();
 }
+
+// Deno.writeTextFileSync(
+//   "./descriptions.json",
+//   JSON.stringify(Object.fromEntries(descriptions)),
+// );

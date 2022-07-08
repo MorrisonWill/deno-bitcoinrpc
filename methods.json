@@ -690,8 +690,810 @@
       "result": {}
     }
   ],
-  "network": [],
-  "rawtransactions": [],
-  "util": [],
-  "walletrpcs": []
+  "network": [
+    {
+      "name": "addnode",
+      "params": [
+        {
+          "name": "node",
+          "type": "string"
+        },
+        {
+          "name": "command",
+          "type": "string"
+        }
+      ],
+      "result": {}
+    },
+    {
+      "name": "clearbanned",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "disconnectnode",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "nodeid?",
+          "type": "number"
+        }
+      ],
+      "result": {}
+    },
+    {
+      "name": "getaddednodeinfo",
+      "params": [
+        {
+          "name": "node?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "addednode": "string",
+        "connected": "boolean",
+        "addresses": "Array<{address: string, connected: string}>"
+      }
+    },
+    {
+      "name": "getconnectioncount",
+      "params": [],
+      "result": {
+        "n": "number"
+      }
+    },
+    {
+      "name": "getnettotals",
+      "params": [],
+      "result": {
+        "totalbytesrecv": "number",
+        "totalbytessent": "number",
+        "timemillis": "number",
+        "uploadtarget": "{timeframe: number, target: number, target_reached: boolean, serve_historical_blocks: boolean, bytes_left_in_cycle: number, time_left_in_cycle: number}"
+      }
+    },
+    {
+      "name": "getnetworkinfo",
+      "params": [],
+      "result": {
+        "version": "number",
+        "subversion": "string",
+        "protocolversion": "number",
+        "localservices": "number",
+        "localservicesnames": "Array<string>",
+        "localrelay": "boolean",
+        "timeoffset": "number",
+        "connections": "number",
+        "connections_in": "number",
+        "connections_out": "number",
+        "networkactive": "boolean",
+        "networks": "Array<{name: string, limited: boolean, reachable: boolean, proxy: string, proxy_randomize_credentials: boolean}>",
+        "relayfee": "number",
+        "incrementalfee": "number",
+        "localaddresses": "Array<{address: string, port: number, score: number}>",
+        "warnings": "string"
+      }
+    },
+    {
+      "name": "getnodeaddresses",
+      "params": [
+        {
+          "name": "count?",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "output": "Array<{time: number, services: number, address: string, port: number}>"
+      }
+    },
+    {
+      "name": "getpeerinfo",
+      "params": [],
+      "result": {
+        "output": "Array<{id: number, addr: string, addrbind: string, addrlocal: string, network: string, mapped_as: number, services: string, servicesnames: Array<string>, relaytxes: boolean, lastsend: number, lastrecv: number, last_transaction: number, last_block: number, bytessent: number, bytesrecv: number, conntime: number, timeoffset: number, pingtime: number, minping: number, pingwait: number, version: number, subver: string, inbound: boolean, addnode: boolean, connection_type: string, startingheight: number, banscore: number, synced_headers: number, synced_blocks: number, inflight: Array<number>, whitelisted: boolean, permissions: Array<string>, minfeefilter: number, bytessent_per_msg: object, bytesrecv_per_msg: object}>"
+      }
+    },
+
+    {
+      "name": "listbanned",
+      "params": [],
+      "result": {
+        "output": "Array<{address: string, banned_until: number, ban_created: number}>"
+      }
+    },
+    {
+      "name": "ping",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "setban",
+      "params": [
+        {
+          "name": "subnet",
+          "type": "string"
+        },
+        {
+          "name": "command",
+          "type": "string"
+        },
+        {
+          "name": "bantime?",
+          "type": "number"
+        },
+        {
+          "name": "absolute?",
+          "type": "boolean"
+        }
+      ],
+      "result": {}
+    },
+    {
+      "name": "setnetworkactive",
+      "params": [
+        {
+          "name": "state",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "output": "boolean"
+      }
+    }
+  ],
+  "rawtransactions": [
+    {
+      "name": "analyzepsbt",
+      "params": [
+        {
+          "name": "psbt",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "inputs": "Array<{has_utxo: boolean, is_final: boolean, missing: {pubkeys: Array<string>, signatures: Array<string>, redeemscript: string, witnessscript: string}, next: string}>",
+        "estimated_vsize": "number",
+        "estimated_feerate": "number",
+        "fee": "number",
+        "next": "string",
+        "error": "string"
+      }
+    },
+    {
+      "name": "combinepsbt",
+      "params": [
+        {
+          "name": "txs",
+          "type": "Array<string>"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "combinerawtransaction",
+      "params": [
+        {
+          "name": "txs",
+          "type": "Array<string>"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "converttopsbt",
+      "params": [
+        {
+          "name": "hexstring",
+          "type": "string"
+        },
+        {
+          "name": "permitsigdata?",
+          "type": "boolean"
+        },
+        {
+          "name": "iswitness?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "createpsbt",
+      "params": [
+        {
+          "name": "inputs",
+          "type": "Array<{txid: string, vout: number, sequence: number}>"
+        },
+        {
+          "name": "outputs",
+          "type": "Array<{address: number} | {address: string} | {data: string}>"
+        },
+        {
+          "name": "locktime?",
+          "type": "number"
+        },
+        {
+          "name": "replaceable?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "createrawtransaction",
+      "params": [
+        {
+          "name": "inputs",
+          "type": "Array<{txid: string, vout: number, sequence: number}>"
+        },
+        {
+          "name": "output",
+          "type": "Array<{address: number} | {address: string} | {data: string}>"
+        },
+        {
+          "name": "locktime?",
+          "type": "number"
+        },
+        {
+          "name": "replaceable?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "hex": "string"
+      }
+    },
+    {
+      "name": "decodepsbt",
+      "params": [
+        {
+          "name": "psbt",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "tx": "{txid: string, hash: string, size: number, vsize: number, weight: number, version: number, locktime: number, vin: Array<{txid: string, vout: number, scriptSig: {asM: string, hex: string}, txinwitness: Array<string>, sequence: number}>, vout: Array<{value: number, n: number, scriptPubKey: {asm: string, hex: string, reqSigs: number, type: string, addresses: Array<string>}}>}",
+        "unknown": "object",
+        "inputs": "Array<{non_witness_utxo: object, witness_utxo: {amount: number, scriptPubKey: {asm: string, hex: string, type: string, address: string}}, partial_signatures: object, sighash: string, redeem_script: {asm: string, hex: string, type: string}, witness_script: {asm: string, hex: string, type: string}, bip32_derivs: Array<{master_fingerprint: string, path: string}>, final_scriptsig: {asm: string, hex: string}, final_scriptwitness: Array<string>, unknown: object}>",
+        "outputs": "Array<{redeem_script: {asm: string, hex: string, type: string}, witness_script: {asm:string, hex: string, type: string}, bip32_derivs: Array<{pubkey: string, master_fingerprint: string, path: string}>, unknown: object}>"
+      }
+    },
+    {
+      "name": "decoderawtransaction",
+      "params": [
+        {
+          "name": "hexstring",
+          "type": "string"
+        },
+        {
+          "name": "iswitness?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "txid": "string",
+        "hash": "string",
+        "size": "number",
+        "vsize": "number",
+        "weight": "number",
+        "version": "number",
+        "locktime": "number",
+        "vin": "Array<{txid: string, vout: number, scriptSig: {asm: string, hex: string}, txinwitness: {hex: string}, sequence: number}>",
+        "vout": "Array<{value: number, n: number, scriptPubKey: {asm: string, hex: string, reqSigs: number, type: string, addresses: Array<string>}}>"
+      }
+    },
+    {
+      "name": "decodescript",
+      "params": [
+        {
+          "name": "hexstring",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "asm": "string",
+        "type": "string",
+        "reqSigs": "number",
+        "addresses": "Array<string>",
+        "p2sh": "string",
+        "segwit": "{asm: string, hex: string, type: string, reqSigs: number, addresses: Array<string>, p2shsegwit: string}"
+      }
+    },
+    {
+      "name": "finalizepsbt",
+      "params": [
+        {
+          "name": "psbt",
+          "type": "string"
+        },
+        {
+          "name": "extract?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "psbt": "string",
+        "hex": "string",
+        "complete": "boolean"
+      }
+    },
+    {
+      "name": "fundrawtransaction",
+      "params": [
+        {
+          "name": "hexstring",
+          "type": "string"
+        },
+        {
+          "name": "options?",
+          "type": "{add_inputs: boolean, changeAddress: string, changePosition: number, change_type: string, includeWatching: boolean, lockUnspents: boolean, fee_rate: number, feeRate: number, subtractFeeFromOutputs: Array<number>}"
+        },
+        {
+          "name": "iswitness?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "hex": "string",
+        "fee": "number",
+        "changepos": "number"
+      }
+    },
+    {
+      "name": "getrawtransaction",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "verbose?",
+          "type": "boolean"
+        },
+        {
+          "name": "blockhash?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "joinpsbts",
+      "params": [
+        {
+          "name": "psbts",
+          "type": "Array<string>"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "sendrawtransaction",
+      "params": [
+        {
+          "name": "hexstring",
+          "type": "string"
+        },
+        {
+          "name": "maxfeerate?",
+          "type": "number | string"
+        }
+      ],
+      "result": {
+        "hex": "string"
+      }
+    },
+    {
+      "name": "signrawtransactionwithkey",
+      "params": [
+        {
+          "name": "hexstring",
+          "type": "string"
+        },
+        {
+          "name": "privkeys",
+          "type": "Array<string>"
+        },
+        {
+          "name": "prevtxs?",
+          "type": "Array<{txid: string, vout: number, scriptPubKey: string, redeemScript: string, witnessScript: string, amount: number}>"
+        },
+        {
+          "name": "sighashtype?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "hex": "string",
+        "complete": "boolean",
+        "errors": "Array<{txid: string, vout: number, scriptSig: string, sequence: number, error: string}>"
+      }
+    },
+    {
+      "name": "testmempoolaccept",
+      "params": [
+        {
+          "name": "rawtxs",
+          "type": "Array<string>"
+        },
+        {
+          "name": "maxfeerate?",
+          "type": "number | string"
+        }
+      ],
+      "result": {
+        "txs": "Array<{txid: string, allowed: boolean, vsize: number, fees: {base: number}, rejectreason: string}>"
+      }
+    },
+    {
+      "name": "utxoupdatepsbt",
+      "params": [
+        {
+          "name": "psbt",
+          "type": "string"
+        },
+        {
+          "name": "descriptors?",
+          "type": "Array<string | {desc: string, range: number | Array<number>}>"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    }
+  ],
+  "util": [
+    {
+      "name": "createmultisig",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "deriveaddresses",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "estimatesmartfee",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getdescriptorinfo",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getindexinfo",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "signmessagewithprivkey",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "validateaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "verifymessage",
+      "params": [],
+      "result": {}
+    }
+  ],
+  "walletrpcs": [
+    {
+      "name": "abandontransaction",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "abortrescan",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "addmultisigaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "backupwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "bumpfee",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "createwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "dumpprivkey",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "dumpwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "encryptwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getaddressbylabel",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getaddressinfo",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getbalance",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getbalances",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getnewaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getrawchangeaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getreceivedbyaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getreceivedbylabel",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "gettransaction",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getunconfirmedbalance",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "getwalletinfo",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "importaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "importdescriptors",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "importmulti",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "importprivkey",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "importprunedfunds",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "importpubkey",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "importwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "keypoolrefill",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listaddressgroupings",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listlabels",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listlockunspent",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listreceivedbyaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listreceivedbylabel",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listsinceblock",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listtransactions",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listunspent",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listwalletdir",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "listwallets",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "loadwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "lockunspent",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "psbtbumpfee",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "removeprunedfunds",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "rescanblockchain",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "send",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "sendmany",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "sendtoaddress",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "sethdseed",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "setlabel",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "settxfee",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "setwalletflag",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "signmessage",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "signrawtransactionwithwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "unloadwallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "upgradewallet",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "walletcreatefundedpsbt",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "walletlock",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "walletpassphrase",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "walletpassphrasechange",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "walletprocesspsbt",
+      "params": [],
+      "result": {}
+    }
+  ]
 }
