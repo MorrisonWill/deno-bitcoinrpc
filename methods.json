@@ -510,5 +510,188 @@
         "n": "number"
       }
     }
-  ]
+  ],
+  "generating": [
+    {
+      "name": "generateblock",
+      "params": [
+        {
+          "name": "output",
+          "type": "string"
+        },
+        {
+          "name": "transactions",
+          "type": "Array<string>"
+        }
+      ],
+      "result": {
+        "hash": "string"
+      }
+    },
+    {
+      "name": "generatetoaddress",
+      "params": [
+        {
+          "name": "nblocks",
+          "type": "number"
+        },
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "maxtries?",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "output": "Array<string>"
+      }
+    },
+    {
+      "name": "generatetodescriptor",
+      "params": [
+        {
+          "name": "num_blocks",
+          "type": "number"
+        },
+        {
+          "name": "descriptor",
+          "type": "string"
+        },
+        {
+          "name": "maxtries?",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "output": "Array<string>"
+      }
+    }
+  ],
+  "mining": [
+    {
+      "name": "getblocktemplate",
+      "params": [
+        {
+          "name": "template_request",
+          "type": "{mode: string, capabilities: Array<string>}"
+        }
+      ],
+      "result": {
+        "version": "number",
+        "rules": "Array<string>",
+        "vbavailable": "Array<number>",
+        "vbrequired": "number",
+        "previousblockhash": "string",
+        "transactions": "Array<{data: string, txid: string, hash: string, depends: Array<number>, fee: number, sigops: number, weight: number}>",
+        "coinbaseaux": "object",
+        "coinbasevalue": "number",
+        "longpollid": "string",
+        "target": "string",
+        "mintime": "number",
+        "mutable": "Array<string>",
+        "noncerange": "string",
+        "sigoplimit": "number",
+        "sizelimit": "number",
+        "curtime": "number",
+        "bits": "string",
+        "height": "number",
+        "default_witness_commitment": "string"
+      }
+    },
+    {
+      "name": "getwork",
+      "params": [
+        {
+          "name": "data?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "data": "string",
+        "hash1": "string",
+        "midstate": "string",
+        "target": "string"
+      }
+    },
+    {
+      "name": "getmininginfo",
+      "params": [],
+      "result": {
+        "blocks": "number",
+        "currentblockweight": "number",
+        "currentblocktx": "number",
+        "difficulty": "number",
+        "networkhashps": "number",
+        "pooledtx": "number",
+        "chain": "string",
+        "warnings": "string"
+      }
+    },
+    {
+      "name": "getnetworkhashps",
+      "params": [
+        {
+          "name": "nblocks?",
+          "type": "number"
+        },
+        {
+          "name": "height?",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "n": "number"
+      }
+    },
+    {
+      "name": "prioritisetransaction",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "fee_delta",
+          "type": "number"
+        },
+        {
+          "name": "dummy?",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "output": "boolean"
+      }
+    },
+    {
+      "name": "submitblock",
+      "params": [
+        {
+          "name": "hexdata",
+          "type": "string"
+        },
+        {
+          "name": "dummy?",
+          "type": "boolean"
+        }
+      ],
+      "result": {}
+    },
+    {
+      "name": "submitheader",
+      "params": [
+        {
+          "name": "hexdata",
+          "type": "string"
+        }
+      ],
+      "result": {}
+    }
+  ],
+  "network": [],
+  "rawtransactions": [],
+  "util": [],
+  "walletrpcs": []
 }

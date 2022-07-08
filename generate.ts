@@ -1,4 +1,4 @@
-import { Project, Scope } from "https://deno.land/x/ts_morph@15.1.0/mod.ts";
+import { Project } from "https://deno.land/x/ts_morph@15.1.0/mod.ts";
 
 type Param = {
   name: string;
@@ -19,7 +19,7 @@ type Methods = {
   network: Call[];
   rawtransactions: Call[];
   util: Call[];
-  wallet: Call[];
+  walletrpcs: Call[];
 };
 
 const methods: Methods = JSON.parse(Deno.readTextFileSync("methods.json"));
