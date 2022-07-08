@@ -40,6 +40,475 @@
         "previousblockhash": "string",
         "nextblockhash": "string"
       }
+    },
+    {
+      "name": "getblockchaininfo",
+      "params": [],
+      "result": {
+        "chain": "string",
+        "blocks": "number",
+        "headers": "number",
+        "bestblockhash": "string",
+        "difficulty": "number",
+        "mediantime": "number",
+        "verificationprogress": "number",
+        "initialblockdownload": "boolean",
+        "chainwork": "string",
+        "size_on_disk": "number",
+        "pruned": "boolean",
+        "prunedheight": "number",
+        "automatic_pruning": "boolean",
+        "pruning_target_size": "number",
+        "warnings": "string"
+      }
+    },
+    {
+      "name": "getblockcount",
+      "params": [],
+      "result": {
+        "n": "number"
+      }
+    },
+    {
+      "name": "getblockfilter",
+      "params": [
+        {
+          "name": "blockhash",
+          "type": "string"
+        },
+        {
+          "name": "filtertype",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "filter": "string",
+        "header": "string"
+      }
+    },
+    {
+      "name": "getblockhash",
+      "params": [
+        {
+          "name": "height",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "hex": "string"
+      }
+    },
+    {
+      "name": "getblockheader",
+      "params": [
+        {
+          "name": "blockhash",
+          "type": "string"
+        },
+        {
+          "name": "verbose?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "hex": "string"
+      }
+    },
+    {
+      "name": "getblockstats",
+      "params": [
+        {
+          "name": "hash_or_height",
+          "type": "number | string"
+        },
+        {
+          "name": "stats?",
+          "type": "Array<{height: string, time: string}>"
+        }
+      ],
+      "result": {
+        "avgfee": "number",
+        "avgfeerate": "number",
+        "avgtxsize": "number",
+        "blockhash": "string",
+        "feerate_percentiles": "Array<{ feerate: number }>",
+        "height": "number",
+        "ins": "number",
+        "maxfee": "number",
+        "maxfeerate": "number",
+        "maxtxsize": "number",
+        "medianfee": "number",
+        "mediantime": "number",
+        "mediantxsize": "number",
+        "minfee": "number",
+        "minfeerate": "number",
+        "mintxsize": "number",
+        "outs": "number",
+        "subsidy": "number",
+        "swtotal_size": "number",
+        "swtotal_weight": "number",
+        "swtxs": "number",
+        "time": "number",
+        "total_out": "number",
+        "total_size": "number",
+        "total_weight": "number",
+        "totalfee": "number",
+        "txs": "number",
+        "utxo_increase": "number",
+        "utxo_size_inc": "number"
+      }
+    },
+    {
+      "name": "getchaintips",
+      "params": [],
+      "result": {
+        "output": "Array<{height: number, hash: string, branchlen: number, status: string}>"
+      }
+    },
+    {
+      "name": "getchaintxstats",
+      "params": [
+        {
+          "name": "nblocks",
+          "type": "number"
+        },
+        {
+          "name": "blockhash?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "time": "number",
+        "txcount": "number",
+        "window_final_block_hash": "string",
+        "window_final_block_height": "number",
+        "window_block_count": "number",
+        "window_tx_count": "number",
+        "window_interval": "number",
+        "txrate": "number"
+      }
+    },
+    {
+      "name": "getdifficulty",
+      "params": [],
+      "result": {
+        "n": "number"
+      }
+    },
+    {
+      "name": "getmempoolancestors",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "verbose?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "output": "Array<string>"
+      }
+    },
+    {
+      "name": "getmempooldescendants",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "verbose?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "output": "Array<string>"
+      }
+    },
+    {
+      "name": "getmempoolentry",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "vsize": "number",
+        "weight": "number",
+        "fee": "number",
+        "modifiedfee": "number",
+        "time": "number",
+        "height": "number",
+        "descendantcount": "number",
+        "descendantsize": "number",
+        "descendantfees": "number",
+        "ancestorcount": "number",
+        "ancestorsize": "number",
+        "ancestorfees": "number",
+        "wtxid": "string",
+        "fees": "{base: number, modified: number, ancestor: number, descendant: number}",
+        "depends": "Array<string>",
+        "spentby": "Array<string>",
+        "bip125replaceable": "boolean",
+        "unbroadcast": "boolean"
+      }
+    },
+    {
+      "name": "getmempoolinfo",
+      "params": [],
+      "result": {
+        "loaded": "boolean",
+        "size": "number",
+        "bytes": "number",
+        "usage": "number",
+        "maxmempool": "number",
+        "mempoolminfee": "number",
+        "minrelaytxfee": "number",
+        "unbroadcastcount": "number"
+      }
+    },
+    {
+      "name": "getrawmempool",
+      "params": [
+        {
+          "name": "verbose?",
+          "type": "boolean"
+        },
+        {
+          "name": "mempool_sequence?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "output": "Array<string>"
+      }
+    },
+    {
+      "name": "gettxout",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "n",
+          "type": "number"
+        },
+        {
+          "name": "includemempool?",
+          "type": "boolean"
+        }
+      ],
+      "result": {
+        "bestblock": "string",
+        "confirmations": "number",
+        "value": "number",
+        "scriptPubKey": "{asm: string, hex: string,reqSigs: number, type: string, addresses: Array<string>}",
+        "coinbase": "boolean"
+      }
+    },
+    {
+      "name": "gettxoutproof",
+      "params": [
+        {
+          "name": "txids",
+          "type": "Array<string>"
+        },
+        {
+          "name": "blockhash?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "gettxoutsetinfo",
+      "params": [
+        {
+          "name": "hash_type?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "height": "number",
+        "bestblock": "string",
+        "transactions": "number",
+        "txouts": "number",
+        "bogosize": "number",
+        "hash_serialized_2": "string",
+        "disk_size": "number",
+        "total_amount": "number"
+      }
+    },
+    {
+      "name": "preciousblock",
+      "params": [
+        {
+          "name": "blockhash",
+          "type": "string"
+        }
+      ],
+      "result": {}
+    },
+    {
+      "name": "pruneblockchain",
+      "params": [
+        {
+          "name": "height",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "n": "number"
+      }
+    },
+    {
+      "name": "savemempool",
+      "params": [],
+      "result": {}
+    },
+    {
+      "name": "scantxoutset",
+      "params": [
+        {
+          "name": "action",
+          "type": "string"
+        },
+        {
+          "name": "scanobjects?",
+          "type": "Array<string | {desc: string, range: number | Array<number>}>"
+        }
+      ],
+      "result": {
+        "success": "boolean",
+        "txouts": "number",
+        "height": "number",
+        "bestblock": "string",
+        "unspents": "Array<{txid: string, vout: number, scriptPubKey: string, desc: string, amount: number, height: number}>",
+        "total_amount": "number"
+      }
+    },
+    {
+      "name": "verifychain",
+      "params": [
+        {
+          "name": "checklevel",
+          "type": "number"
+        },
+        {
+          "name": "nblocks?",
+          "type": "number"
+        }
+      ],
+      "result": {
+        "valid": "boolean"
+      }
+    },
+    {
+      "name": "verifytxoutproof",
+      "params": [
+        {
+          "name": "proof",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "output": "Array<{hex: string}>"
+      }
+    }
+  ],
+  "control": [
+    {
+      "name": "getmemoryinfo",
+      "params": [
+        {
+          "name": "mode?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "locked": "{used: number, free: number, total: number, locked: number, chunks_used: number, chunks_free: number}"
+      }
+    },
+    {
+      "name": "getrpcinfo",
+      "params": [],
+      "result": {
+        "active_commands": "Array<{method: string, duration: number}>",
+        "logpath": "string"
+      }
+    },
+    {
+      "name": "help",
+      "params": [
+        {
+          "name": "command?",
+          "type": "string"
+        }
+      ],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "logging",
+      "params": [
+        {
+          "name": "include?",
+          "type": "Array<string>"
+        },
+        {
+          "name": "exclude?",
+          "type": "Array<string>"
+        }
+      ],
+      "result": {
+        "addrman": "boolean",
+        "bench": "boolean",
+        "blockstorage": "boolean",
+        "cmpctblock": "boolean",
+        "coindb": "boolean",
+        "estimatefee": "boolean",
+        "http": "boolean",
+        "i2p": "boolean",
+        "ipc": "boolean",
+        "leveldb": "boolean",
+        "libevent": "boolean",
+        "mempool": "boolean",
+        "mempoolrej": "boolean",
+        "net": "boolean",
+        "proxy": "boolean",
+        "prune": "boolean",
+        "qt": "boolean",
+        "rand": "boolean",
+        "reindex": "boolean",
+        "rpc": "boolean",
+        "selectcoins": "boolean",
+        "tor": "boolean",
+        "utils": "boolean",
+        "validation": "boolean",
+        "walletdb": "boolean",
+        "zmq": "boolean"
+      }
+    },
+    {
+      "name": "stop",
+      "params": [],
+      "result": {
+        "str": "string"
+      }
+    },
+    {
+      "name": "uptime",
+      "params": [],
+      "result": {
+        "n": "number"
+      }
     }
   ]
 }
