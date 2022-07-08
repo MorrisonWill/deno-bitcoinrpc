@@ -11,7 +11,7 @@ export default class BitcoinRPC {
   user?: string;
   pass?: string;
 
-  async request(method: string, params: any[]): Promise<any> {
+  async request(method: string, params: any[]) {
     const headers = new Headers({
       "Content-Type": "application/json",
       "Authorization": this.auth

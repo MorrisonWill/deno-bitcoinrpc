@@ -1,15 +1,12 @@
 import { Project } from "https://deno.land/x/ts_morph@15.1.0/mod.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom@v0.1.32-alpha/deno-dom-wasm.ts";
 
-type Param = {
-  name: string;
-  type: string;
-};
-
 type Call = {
   name: string;
-  params: Param[];
-  result: object;
+  params: [{
+    name: string;
+    type: string;
+  }];
 };
 
 type Methods = {
@@ -30,7 +27,7 @@ const project = new Project();
 const originalClient = project.addSourceFileAtPath("./client.ts");
 const clientCopy = originalClient.copy("mod.ts", { overwrite: true });
 
-const output = project.addSourceFileAtPath(
+project.addSourceFileAtPath(
   "./mod.ts",
 );
 
@@ -54,8 +51,7 @@ async function getDescription(name: string) {
 
 let descriptions = new Map<string, string>();
 
-// TODO: remove response from methods
-// TODO: add jsdoc
+// TODO: finish all methods, fix up the ones with more complex args
 
 for (const [_, calls] of Object.entries(methods)) {
   for (const call of calls) {
@@ -73,60 +69,31 @@ for (const [_, calls] of Object.entries(methods)) {
       throw new Error("BitcoinRPC class not found");
     }
 
-    try {
-      if (Object.keys(call.result).length === 0) {
-        output.addTypeAlias({
-          name: call.name + "Result",
-          type: "void",
-        });
-      } else if (Object.keys(call.result).length === 1) {
-        output.addTypeAlias({
-          name: call.name + "Result",
-          type: Object.values(call.result)[0],
-        });
-      } else {
-        const returnDeclaration = output.addInterface({
-          name: call.name + "Result",
-        });
+    const methodDeclaration = client.addMethod({
+      name: call.name,
+    });
 
-        for (const [key, value] of Object.entries(call.result)) {
-          returnDeclaration.addProperty({
-            name: key,
-            type: value,
-          });
-        }
-      }
+    methodDeclaration.setIsAsync(true);
 
-      const methodDeclaration = client.addMethod({
-        name: call.name,
+    methodDeclaration.setBodyText((writer) => {
+      writer.writeLine(
+        `return await this.request("${call.name}", [${
+          call.params.map((param) => `${param.name.replace("?", "")}`).join(
+            ", ",
+          )
+        }]);`,
+      );
+    });
+
+    methodDeclaration.addJsDoc({
+      description: description,
+    });
+
+    for (const param of call.params) {
+      methodDeclaration.addParameter({
+        name: param.name,
+        type: param.type,
       });
-
-      methodDeclaration.setIsAsync(true);
-
-      methodDeclaration.setBodyText((writer) => {
-        writer.writeLine(
-          `return await this.request("${call.name}", [${
-            call.params.map((param) => `${param.name.replace("?", "")}`).join(
-              ", ",
-            )
-          }]);`,
-        );
-      });
-
-      methodDeclaration.addJsDoc({
-        description: description,
-      });
-
-      for (const param of call.params) {
-        methodDeclaration.addParameter({
-          name: param.name,
-          type: param.type,
-        });
-      }
-
-      // methodDeclaration.setReturnType(`Promise<${call.name}Result>`);
-    } catch (e) {
-      console.log(`${call.name} failed with ${e}`);
     }
   }
   await project.save();

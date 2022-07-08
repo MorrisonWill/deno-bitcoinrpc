@@ -1,572 +1,165 @@
 {
   "blockchain": [
-    {
-      "name": "getbestblockhash",
-      "params": [],
-      "result": {
-        "hex": "string"
-      }
-    },
+    { "name": "getbestblockhash", "params": [] },
     {
       "name": "getblock",
       "params": [
-        {
-          "name": "blockhash",
-          "type": "string"
-        },
-        {
-          "name": "verbosity?",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "hash": "string",
-        "confirmations": "number",
-        "size": "number",
-        "strippedsize": "number",
-        "weight": "number",
-        "height": "number",
-        "version": "number",
-        "versionHex": "string",
-        "merkleroot": "string",
-        "tx": "Array<string>",
-        "time": "number",
-        "mediantime": "number",
-        "nonce": "number",
-        "bits": "string",
-        "difficulty": "number",
-        "chainwork": "string",
-        "nTx": "number",
-        "previousblockhash": "string",
-        "nextblockhash": "string"
-      }
+        { "name": "blockhash", "type": "string" },
+        { "name": "verbosity?", "type": "number" }
+      ]
     },
-    {
-      "name": "getblockchaininfo",
-      "params": [],
-      "result": {
-        "chain": "string",
-        "blocks": "number",
-        "headers": "number",
-        "bestblockhash": "string",
-        "difficulty": "number",
-        "mediantime": "number",
-        "verificationprogress": "number",
-        "initialblockdownload": "boolean",
-        "chainwork": "string",
-        "size_on_disk": "number",
-        "pruned": "boolean",
-        "prunedheight": "number",
-        "automatic_pruning": "boolean",
-        "pruning_target_size": "number",
-        "warnings": "string"
-      }
-    },
-    {
-      "name": "getblockcount",
-      "params": [],
-      "result": {
-        "n": "number"
-      }
-    },
+    { "name": "getblockchaininfo", "params": [] },
+    { "name": "getblockcount", "params": [] },
     {
       "name": "getblockfilter",
       "params": [
-        {
-          "name": "blockhash",
-          "type": "string"
-        },
-        {
-          "name": "filtertype",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "filter": "string",
-        "header": "string"
-      }
+        { "name": "blockhash", "type": "string" },
+        { "name": "filtertype", "type": "string" }
+      ]
     },
     {
       "name": "getblockhash",
-      "params": [
-        {
-          "name": "height",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "hex": "string"
-      }
+      "params": [{ "name": "height", "type": "number" }]
     },
     {
       "name": "getblockheader",
       "params": [
-        {
-          "name": "blockhash",
-          "type": "string"
-        },
-        {
-          "name": "verbose?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "hex": "string"
-      }
+        { "name": "blockhash", "type": "string" },
+        { "name": "verbose?", "type": "boolean" }
+      ]
     },
     {
       "name": "getblockstats",
       "params": [
-        {
-          "name": "hash_or_height",
-          "type": "number | string"
-        },
-        {
-          "name": "stats?",
-          "type": "Array<{height: string, time: string}>"
-        }
-      ],
-      "result": {
-        "avgfee": "number",
-        "avgfeerate": "number",
-        "avgtxsize": "number",
-        "blockhash": "string",
-        "feerate_percentiles": "Array<{ feerate: number }>",
-        "height": "number",
-        "ins": "number",
-        "maxfee": "number",
-        "maxfeerate": "number",
-        "maxtxsize": "number",
-        "medianfee": "number",
-        "mediantime": "number",
-        "mediantxsize": "number",
-        "minfee": "number",
-        "minfeerate": "number",
-        "mintxsize": "number",
-        "outs": "number",
-        "subsidy": "number",
-        "swtotal_size": "number",
-        "swtotal_weight": "number",
-        "swtxs": "number",
-        "time": "number",
-        "total_out": "number",
-        "total_size": "number",
-        "total_weight": "number",
-        "totalfee": "number",
-        "txs": "number",
-        "utxo_increase": "number",
-        "utxo_size_inc": "number"
-      }
+        { "name": "hash_or_height", "type": "number | string" },
+        { "name": "stats?", "type": "Array<{height: string, time: string}>" }
+      ]
     },
-    {
-      "name": "getchaintips",
-      "params": [],
-      "result": {
-        "output": "Array<{height: number, hash: string, branchlen: number, status: string}>"
-      }
-    },
+    { "name": "getchaintips", "params": [] },
     {
       "name": "getchaintxstats",
       "params": [
-        {
-          "name": "nblocks",
-          "type": "number"
-        },
-        {
-          "name": "blockhash?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "time": "number",
-        "txcount": "number",
-        "window_final_block_hash": "string",
-        "window_final_block_height": "number",
-        "window_block_count": "number",
-        "window_tx_count": "number",
-        "window_interval": "number",
-        "txrate": "number"
-      }
+        { "name": "nblocks", "type": "number" },
+        { "name": "blockhash?", "type": "string" }
+      ]
     },
-    {
-      "name": "getdifficulty",
-      "params": [],
-      "result": {
-        "n": "number"
-      }
-    },
+    { "name": "getdifficulty", "params": [] },
     {
       "name": "getmempoolancestors",
       "params": [
-        {
-          "name": "txid",
-          "type": "string"
-        },
-        {
-          "name": "verbose?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "output": "Array<string>"
-      }
+        { "name": "txid", "type": "string" },
+        { "name": "verbose?", "type": "boolean" }
+      ]
     },
     {
       "name": "getmempooldescendants",
       "params": [
-        {
-          "name": "txid",
-          "type": "string"
-        },
-        {
-          "name": "verbose?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "output": "Array<string>"
-      }
+        { "name": "txid", "type": "string" },
+        { "name": "verbose?", "type": "boolean" }
+      ]
     },
     {
       "name": "getmempoolentry",
-      "params": [
-        {
-          "name": "txid",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "vsize": "number",
-        "weight": "number",
-        "fee": "number",
-        "modifiedfee": "number",
-        "time": "number",
-        "height": "number",
-        "descendantcount": "number",
-        "descendantsize": "number",
-        "descendantfees": "number",
-        "ancestorcount": "number",
-        "ancestorsize": "number",
-        "ancestorfees": "number",
-        "wtxid": "string",
-        "fees": "{base: number, modified: number, ancestor: number, descendant: number}",
-        "depends": "Array<string>",
-        "spentby": "Array<string>",
-        "bip125replaceable": "boolean",
-        "unbroadcast": "boolean"
-      }
+      "params": [{ "name": "txid", "type": "string" }]
     },
-    {
-      "name": "getmempoolinfo",
-      "params": [],
-      "result": {
-        "loaded": "boolean",
-        "size": "number",
-        "bytes": "number",
-        "usage": "number",
-        "maxmempool": "number",
-        "mempoolminfee": "number",
-        "minrelaytxfee": "number",
-        "unbroadcastcount": "number"
-      }
-    },
+    { "name": "getmempoolinfo", "params": [] },
     {
       "name": "getrawmempool",
       "params": [
-        {
-          "name": "verbose?",
-          "type": "boolean"
-        },
-        {
-          "name": "mempool_sequence?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "output": "Array<string>"
-      }
+        { "name": "verbose?", "type": "boolean" },
+        { "name": "mempool_sequence?", "type": "boolean" }
+      ]
     },
     {
       "name": "gettxout",
       "params": [
-        {
-          "name": "txid",
-          "type": "string"
-        },
-        {
-          "name": "n",
-          "type": "number"
-        },
-        {
-          "name": "includemempool?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "bestblock": "string",
-        "confirmations": "number",
-        "value": "number",
-        "scriptPubKey": "{asm: string, hex: string,reqSigs: number, type: string, addresses: Array<string>}",
-        "coinbase": "boolean"
-      }
+        { "name": "txid", "type": "string" },
+        { "name": "n", "type": "number" },
+        { "name": "includemempool?", "type": "boolean" }
+      ]
     },
     {
       "name": "gettxoutproof",
       "params": [
-        {
-          "name": "txids",
-          "type": "Array<string>"
-        },
-        {
-          "name": "blockhash?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
+        { "name": "txids", "type": "Array<string>" },
+        { "name": "blockhash?", "type": "string" }
+      ]
     },
     {
       "name": "gettxoutsetinfo",
-      "params": [
-        {
-          "name": "hash_type?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "height": "number",
-        "bestblock": "string",
-        "transactions": "number",
-        "txouts": "number",
-        "bogosize": "number",
-        "hash_serialized_2": "string",
-        "disk_size": "number",
-        "total_amount": "number"
-      }
+      "params": [{ "name": "hash_type?", "type": "string" }]
     },
     {
       "name": "preciousblock",
-      "params": [
-        {
-          "name": "blockhash",
-          "type": "string"
-        }
-      ],
-      "result": {}
+      "params": [{ "name": "blockhash", "type": "string" }]
     },
     {
       "name": "pruneblockchain",
-      "params": [
-        {
-          "name": "height",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "n": "number"
-      }
+      "params": [{ "name": "height", "type": "number" }]
     },
-    {
-      "name": "savemempool",
-      "params": [],
-      "result": {}
-    },
+    { "name": "savemempool", "params": [] },
     {
       "name": "scantxoutset",
       "params": [
-        {
-          "name": "action",
-          "type": "string"
-        },
+        { "name": "action", "type": "string" },
         {
           "name": "scanobjects?",
           "type": "Array<string | {desc: string, range: number | Array<number>}>"
         }
-      ],
-      "result": {
-        "success": "boolean",
-        "txouts": "number",
-        "height": "number",
-        "bestblock": "string",
-        "unspents": "Array<{txid: string, vout: number, scriptPubKey: string, desc: string, amount: number, height: number}>",
-        "total_amount": "number"
-      }
+      ]
     },
     {
       "name": "verifychain",
       "params": [
-        {
-          "name": "checklevel",
-          "type": "number"
-        },
-        {
-          "name": "nblocks?",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "valid": "boolean"
-      }
+        { "name": "checklevel", "type": "number" },
+        { "name": "nblocks?", "type": "number" }
+      ]
     },
     {
       "name": "verifytxoutproof",
-      "params": [
-        {
-          "name": "proof",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "output": "Array<{hex: string}>"
-      }
+      "params": [{ "name": "proof", "type": "string" }]
     }
   ],
   "control": [
     {
       "name": "getmemoryinfo",
-      "params": [
-        {
-          "name": "mode?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "locked": "{used: number, free: number, total: number, locked: number, chunks_used: number, chunks_free: number}"
-      }
+      "params": [{ "name": "mode?", "type": "string" }]
     },
-    {
-      "name": "getrpcinfo",
-      "params": [],
-      "result": {
-        "active_commands": "Array<{method: string, duration: number}>",
-        "logpath": "string"
-      }
-    },
-    {
-      "name": "help",
-      "params": [
-        {
-          "name": "command?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
-    },
+    { "name": "getrpcinfo", "params": [] },
+    { "name": "help", "params": [{ "name": "command?", "type": "string" }] },
     {
       "name": "logging",
       "params": [
-        {
-          "name": "include?",
-          "type": "Array<string>"
-        },
-        {
-          "name": "exclude?",
-          "type": "Array<string>"
-        }
-      ],
-      "result": {
-        "addrman": "boolean",
-        "bench": "boolean",
-        "blockstorage": "boolean",
-        "cmpctblock": "boolean",
-        "coindb": "boolean",
-        "estimatefee": "boolean",
-        "http": "boolean",
-        "i2p": "boolean",
-        "ipc": "boolean",
-        "leveldb": "boolean",
-        "libevent": "boolean",
-        "mempool": "boolean",
-        "mempoolrej": "boolean",
-        "net": "boolean",
-        "proxy": "boolean",
-        "prune": "boolean",
-        "qt": "boolean",
-        "rand": "boolean",
-        "reindex": "boolean",
-        "rpc": "boolean",
-        "selectcoins": "boolean",
-        "tor": "boolean",
-        "utils": "boolean",
-        "validation": "boolean",
-        "walletdb": "boolean",
-        "zmq": "boolean"
-      }
+        { "name": "include?", "type": "Array<string>" },
+        { "name": "exclude?", "type": "Array<string>" }
+      ]
     },
-    {
-      "name": "stop",
-      "params": [],
-      "result": {
-        "str": "string"
-      }
-    },
-    {
-      "name": "uptime",
-      "params": [],
-      "result": {
-        "n": "number"
-      }
-    }
+    { "name": "stop", "params": [] },
+    { "name": "uptime", "params": [] }
   ],
   "generating": [
     {
       "name": "generateblock",
       "params": [
-        {
-          "name": "output",
-          "type": "string"
-        },
-        {
-          "name": "transactions",
-          "type": "Array<string>"
-        }
-      ],
-      "result": {
-        "hash": "string"
-      }
+        { "name": "output", "type": "string" },
+        { "name": "transactions", "type": "Array<string>" }
+      ]
     },
     {
       "name": "generatetoaddress",
       "params": [
-        {
-          "name": "nblocks",
-          "type": "number"
-        },
-        {
-          "name": "address",
-          "type": "string"
-        },
-        {
-          "name": "maxtries?",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "output": "Array<string>"
-      }
+        { "name": "nblocks", "type": "number" },
+        { "name": "address", "type": "string" },
+        { "name": "maxtries?", "type": "number" }
+      ]
     },
     {
       "name": "generatetodescriptor",
       "params": [
-        {
-          "name": "num_blocks",
-          "type": "number"
-        },
-        {
-          "name": "descriptor",
-          "type": "string"
-        },
-        {
-          "name": "maxtries?",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "output": "Array<string>"
-      }
+        { "name": "num_blocks", "type": "number" },
+        { "name": "descriptor", "type": "string" },
+        { "name": "maxtries?", "type": "number" }
+      ]
     }
   ],
   "mining": [
@@ -577,334 +170,98 @@
           "name": "template_request",
           "type": "{mode: string, capabilities: Array<string>}"
         }
-      ],
-      "result": {
-        "version": "number",
-        "rules": "Array<string>",
-        "vbavailable": "Array<number>",
-        "vbrequired": "number",
-        "previousblockhash": "string",
-        "transactions": "Array<{data: string, txid: string, hash: string, depends: Array<number>, fee: number, sigops: number, weight: number}>",
-        "coinbaseaux": "object",
-        "coinbasevalue": "number",
-        "longpollid": "string",
-        "target": "string",
-        "mintime": "number",
-        "mutable": "Array<string>",
-        "noncerange": "string",
-        "sigoplimit": "number",
-        "sizelimit": "number",
-        "curtime": "number",
-        "bits": "string",
-        "height": "number",
-        "default_witness_commitment": "string"
-      }
+      ]
     },
-    {
-      "name": "getwork",
-      "params": [
-        {
-          "name": "data?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "data": "string",
-        "hash1": "string",
-        "midstate": "string",
-        "target": "string"
-      }
-    },
-    {
-      "name": "getmininginfo",
-      "params": [],
-      "result": {
-        "blocks": "number",
-        "currentblockweight": "number",
-        "currentblocktx": "number",
-        "difficulty": "number",
-        "networkhashps": "number",
-        "pooledtx": "number",
-        "chain": "string",
-        "warnings": "string"
-      }
-    },
+    { "name": "getwork", "params": [{ "name": "data?", "type": "string" }] },
+    { "name": "getmininginfo", "params": [] },
     {
       "name": "getnetworkhashps",
       "params": [
-        {
-          "name": "nblocks?",
-          "type": "number"
-        },
-        {
-          "name": "height?",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "n": "number"
-      }
+        { "name": "nblocks?", "type": "number" },
+        { "name": "height?", "type": "number" }
+      ]
     },
     {
       "name": "prioritisetransaction",
       "params": [
-        {
-          "name": "txid",
-          "type": "string"
-        },
-        {
-          "name": "fee_delta",
-          "type": "number"
-        },
-        {
-          "name": "dummy?",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "output": "boolean"
-      }
+        { "name": "txid", "type": "string" },
+        { "name": "fee_delta", "type": "number" },
+        { "name": "dummy?", "type": "number" }
+      ]
     },
     {
       "name": "submitblock",
       "params": [
-        {
-          "name": "hexdata",
-          "type": "string"
-        },
-        {
-          "name": "dummy?",
-          "type": "boolean"
-        }
-      ],
-      "result": {}
+        { "name": "hexdata", "type": "string" },
+        { "name": "dummy?", "type": "boolean" }
+      ]
     },
     {
       "name": "submitheader",
-      "params": [
-        {
-          "name": "hexdata",
-          "type": "string"
-        }
-      ],
-      "result": {}
+      "params": [{ "name": "hexdata", "type": "string" }]
     }
   ],
   "network": [
     {
       "name": "addnode",
       "params": [
-        {
-          "name": "node",
-          "type": "string"
-        },
-        {
-          "name": "command",
-          "type": "string"
-        }
-      ],
-      "result": {}
+        { "name": "node", "type": "string" },
+        { "name": "command", "type": "string" }
+      ]
     },
-    {
-      "name": "clearbanned",
-      "params": [],
-      "result": {}
-    },
+    { "name": "clearbanned", "params": [] },
     {
       "name": "disconnectnode",
       "params": [
-        {
-          "name": "address",
-          "type": "string"
-        },
-        {
-          "name": "nodeid?",
-          "type": "number"
-        }
-      ],
-      "result": {}
+        { "name": "address", "type": "string" },
+        { "name": "nodeid?", "type": "number" }
+      ]
     },
     {
       "name": "getaddednodeinfo",
-      "params": [
-        {
-          "name": "node?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "addednode": "string",
-        "connected": "boolean",
-        "addresses": "Array<{address: string, connected: string}>"
-      }
+      "params": [{ "name": "node?", "type": "string" }]
     },
-    {
-      "name": "getconnectioncount",
-      "params": [],
-      "result": {
-        "n": "number"
-      }
-    },
-    {
-      "name": "getnettotals",
-      "params": [],
-      "result": {
-        "totalbytesrecv": "number",
-        "totalbytessent": "number",
-        "timemillis": "number",
-        "uploadtarget": "{timeframe: number, target: number, target_reached: boolean, serve_historical_blocks: boolean, bytes_left_in_cycle: number, time_left_in_cycle: number}"
-      }
-    },
-    {
-      "name": "getnetworkinfo",
-      "params": [],
-      "result": {
-        "version": "number",
-        "subversion": "string",
-        "protocolversion": "number",
-        "localservices": "number",
-        "localservicesnames": "Array<string>",
-        "localrelay": "boolean",
-        "timeoffset": "number",
-        "connections": "number",
-        "connections_in": "number",
-        "connections_out": "number",
-        "networkactive": "boolean",
-        "networks": "Array<{name: string, limited: boolean, reachable: boolean, proxy: string, proxy_randomize_credentials: boolean}>",
-        "relayfee": "number",
-        "incrementalfee": "number",
-        "localaddresses": "Array<{address: string, port: number, score: number}>",
-        "warnings": "string"
-      }
-    },
+    { "name": "getconnectioncount", "params": [] },
+    { "name": "getnettotals", "params": [] },
+    { "name": "getnetworkinfo", "params": [] },
     {
       "name": "getnodeaddresses",
-      "params": [
-        {
-          "name": "count?",
-          "type": "number"
-        }
-      ],
-      "result": {
-        "output": "Array<{time: number, services: number, address: string, port: number}>"
-      }
+      "params": [{ "name": "count?", "type": "number" }]
     },
-    {
-      "name": "getpeerinfo",
-      "params": [],
-      "result": {
-        "output": "Array<{id: number, addr: string, addrbind: string, addrlocal: string, network: string, mapped_as: number, services: string, servicesnames: Array<string>, relaytxes: boolean, lastsend: number, lastrecv: number, last_transaction: number, last_block: number, bytessent: number, bytesrecv: number, conntime: number, timeoffset: number, pingtime: number, minping: number, pingwait: number, version: number, subver: string, inbound: boolean, addnode: boolean, connection_type: string, startingheight: number, banscore: number, synced_headers: number, synced_blocks: number, inflight: Array<number>, whitelisted: boolean, permissions: Array<string>, minfeefilter: number, bytessent_per_msg: object, bytesrecv_per_msg: object}>"
-      }
-    },
-
-    {
-      "name": "listbanned",
-      "params": [],
-      "result": {
-        "output": "Array<{address: string, banned_until: number, ban_created: number}>"
-      }
-    },
-    {
-      "name": "ping",
-      "params": [],
-      "result": {}
-    },
+    { "name": "getpeerinfo", "params": [] },
+    { "name": "listbanned", "params": [] },
+    { "name": "ping", "params": [] },
     {
       "name": "setban",
       "params": [
-        {
-          "name": "subnet",
-          "type": "string"
-        },
-        {
-          "name": "command",
-          "type": "string"
-        },
-        {
-          "name": "bantime?",
-          "type": "number"
-        },
-        {
-          "name": "absolute?",
-          "type": "boolean"
-        }
-      ],
-      "result": {}
+        { "name": "subnet", "type": "string" },
+        { "name": "command", "type": "string" },
+        { "name": "bantime?", "type": "number" },
+        { "name": "absolute?", "type": "boolean" }
+      ]
     },
     {
       "name": "setnetworkactive",
-      "params": [
-        {
-          "name": "state",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "output": "boolean"
-      }
+      "params": [{ "name": "state", "type": "boolean" }]
     }
   ],
   "rawtransactions": [
-    {
-      "name": "analyzepsbt",
-      "params": [
-        {
-          "name": "psbt",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "inputs": "Array<{has_utxo: boolean, is_final: boolean, missing: {pubkeys: Array<string>, signatures: Array<string>, redeemscript: string, witnessscript: string}, next: string}>",
-        "estimated_vsize": "number",
-        "estimated_feerate": "number",
-        "fee": "number",
-        "next": "string",
-        "error": "string"
-      }
-    },
+    { "name": "analyzepsbt", "params": [{ "name": "psbt", "type": "string" }] },
     {
       "name": "combinepsbt",
-      "params": [
-        {
-          "name": "txs",
-          "type": "Array<string>"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
+      "params": [{ "name": "txs", "type": "Array<string>" }]
     },
     {
       "name": "combinerawtransaction",
-      "params": [
-        {
-          "name": "txs",
-          "type": "Array<string>"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
+      "params": [{ "name": "txs", "type": "Array<string>" }]
     },
     {
       "name": "converttopsbt",
       "params": [
-        {
-          "name": "hexstring",
-          "type": "string"
-        },
-        {
-          "name": "permitsigdata?",
-          "type": "boolean"
-        },
-        {
-          "name": "iswitness?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
+        { "name": "hexstring", "type": "string" },
+        { "name": "permitsigdata?", "type": "boolean" },
+        { "name": "iswitness?", "type": "boolean" }
+      ]
     },
     {
       "name": "createpsbt",
@@ -917,18 +274,9 @@
           "name": "outputs",
           "type": "Array<{address: number} | {address: string} | {data: string}>"
         },
-        {
-          "name": "locktime?",
-          "type": "number"
-        },
-        {
-          "name": "replaceable?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
+        { "name": "locktime?", "type": "number" },
+        { "name": "replaceable?", "type": "boolean" }
+      ]
     },
     {
       "name": "createrawtransaction",
@@ -941,559 +289,158 @@
           "name": "output",
           "type": "Array<{address: number} | {address: string} | {data: string}>"
         },
-        {
-          "name": "locktime?",
-          "type": "number"
-        },
-        {
-          "name": "replaceable?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "hex": "string"
-      }
+        { "name": "locktime?", "type": "number" },
+        { "name": "replaceable?", "type": "boolean" }
+      ]
     },
-    {
-      "name": "decodepsbt",
-      "params": [
-        {
-          "name": "psbt",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "tx": "{txid: string, hash: string, size: number, vsize: number, weight: number, version: number, locktime: number, vin: Array<{txid: string, vout: number, scriptSig: {asM: string, hex: string}, txinwitness: Array<string>, sequence: number}>, vout: Array<{value: number, n: number, scriptPubKey: {asm: string, hex: string, reqSigs: number, type: string, addresses: Array<string>}}>}",
-        "unknown": "object",
-        "inputs": "Array<{non_witness_utxo: object, witness_utxo: {amount: number, scriptPubKey: {asm: string, hex: string, type: string, address: string}}, partial_signatures: object, sighash: string, redeem_script: {asm: string, hex: string, type: string}, witness_script: {asm: string, hex: string, type: string}, bip32_derivs: Array<{master_fingerprint: string, path: string}>, final_scriptsig: {asm: string, hex: string}, final_scriptwitness: Array<string>, unknown: object}>",
-        "outputs": "Array<{redeem_script: {asm: string, hex: string, type: string}, witness_script: {asm:string, hex: string, type: string}, bip32_derivs: Array<{pubkey: string, master_fingerprint: string, path: string}>, unknown: object}>"
-      }
-    },
+    { "name": "decodepsbt", "params": [{ "name": "psbt", "type": "string" }] },
     {
       "name": "decoderawtransaction",
       "params": [
-        {
-          "name": "hexstring",
-          "type": "string"
-        },
-        {
-          "name": "iswitness?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "txid": "string",
-        "hash": "string",
-        "size": "number",
-        "vsize": "number",
-        "weight": "number",
-        "version": "number",
-        "locktime": "number",
-        "vin": "Array<{txid: string, vout: number, scriptSig: {asm: string, hex: string}, txinwitness: {hex: string}, sequence: number}>",
-        "vout": "Array<{value: number, n: number, scriptPubKey: {asm: string, hex: string, reqSigs: number, type: string, addresses: Array<string>}}>"
-      }
+        { "name": "hexstring", "type": "string" },
+        { "name": "iswitness?", "type": "boolean" }
+      ]
     },
     {
       "name": "decodescript",
-      "params": [
-        {
-          "name": "hexstring",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "asm": "string",
-        "type": "string",
-        "reqSigs": "number",
-        "addresses": "Array<string>",
-        "p2sh": "string",
-        "segwit": "{asm: string, hex: string, type: string, reqSigs: number, addresses: Array<string>, p2shsegwit: string}"
-      }
+      "params": [{ "name": "hexstring", "type": "string" }]
     },
     {
       "name": "finalizepsbt",
       "params": [
-        {
-          "name": "psbt",
-          "type": "string"
-        },
-        {
-          "name": "extract?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "psbt": "string",
-        "hex": "string",
-        "complete": "boolean"
-      }
+        { "name": "psbt", "type": "string" },
+        { "name": "extract?", "type": "boolean" }
+      ]
     },
     {
       "name": "fundrawtransaction",
       "params": [
-        {
-          "name": "hexstring",
-          "type": "string"
-        },
+        { "name": "hexstring", "type": "string" },
         {
           "name": "options?",
           "type": "{add_inputs: boolean, changeAddress: string, changePosition: number, change_type: string, includeWatching: boolean, lockUnspents: boolean, fee_rate: number, feeRate: number, subtractFeeFromOutputs: Array<number>}"
         },
-        {
-          "name": "iswitness?",
-          "type": "boolean"
-        }
-      ],
-      "result": {
-        "hex": "string",
-        "fee": "number",
-        "changepos": "number"
-      }
+        { "name": "iswitness?", "type": "boolean" }
+      ]
     },
     {
       "name": "getrawtransaction",
       "params": [
-        {
-          "name": "txid",
-          "type": "string"
-        },
-        {
-          "name": "verbose?",
-          "type": "boolean"
-        },
-        {
-          "name": "blockhash?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
+        { "name": "txid", "type": "string" },
+        { "name": "verbose?", "type": "boolean" },
+        { "name": "blockhash?", "type": "string" }
+      ]
     },
     {
       "name": "joinpsbts",
-      "params": [
-        {
-          "name": "psbts",
-          "type": "Array<string>"
-        }
-      ],
-      "result": {
-        "str": "string"
-      }
+      "params": [{ "name": "psbts", "type": "Array<string>" }]
     },
     {
       "name": "sendrawtransaction",
       "params": [
-        {
-          "name": "hexstring",
-          "type": "string"
-        },
-        {
-          "name": "maxfeerate?",
-          "type": "number | string"
-        }
-      ],
-      "result": {
-        "hex": "string"
-      }
+        { "name": "hexstring", "type": "string" },
+        { "name": "maxfeerate?", "type": "number | string" }
+      ]
     },
     {
       "name": "signrawtransactionwithkey",
       "params": [
-        {
-          "name": "hexstring",
-          "type": "string"
-        },
-        {
-          "name": "privkeys",
-          "type": "Array<string>"
-        },
+        { "name": "hexstring", "type": "string" },
+        { "name": "privkeys", "type": "Array<string>" },
         {
           "name": "prevtxs?",
           "type": "Array<{txid: string, vout: number, scriptPubKey: string, redeemScript: string, witnessScript: string, amount: number}>"
         },
-        {
-          "name": "sighashtype?",
-          "type": "string"
-        }
-      ],
-      "result": {
-        "hex": "string",
-        "complete": "boolean",
-        "errors": "Array<{txid: string, vout: number, scriptSig: string, sequence: number, error: string}>"
-      }
+        { "name": "sighashtype?", "type": "string" }
+      ]
     },
     {
       "name": "testmempoolaccept",
       "params": [
-        {
-          "name": "rawtxs",
-          "type": "Array<string>"
-        },
-        {
-          "name": "maxfeerate?",
-          "type": "number | string"
-        }
-      ],
-      "result": {
-        "txs": "Array<{txid: string, allowed: boolean, vsize: number, fees: {base: number}, rejectreason: string}>"
-      }
+        { "name": "rawtxs", "type": "Array<string>" },
+        { "name": "maxfeerate?", "type": "number | string" }
+      ]
     },
     {
       "name": "utxoupdatepsbt",
       "params": [
-        {
-          "name": "psbt",
-          "type": "string"
-        },
+        { "name": "psbt", "type": "string" },
         {
           "name": "descriptors?",
           "type": "Array<string | {desc: string, range: number | Array<number>}>"
         }
-      ],
-      "result": {
-        "str": "string"
-      }
+      ]
     }
   ],
   "util": [
-    {
-      "name": "createmultisig",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "deriveaddresses",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "estimatesmartfee",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getdescriptorinfo",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getindexinfo",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "signmessagewithprivkey",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "validateaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "verifymessage",
-      "params": [],
-      "result": {}
-    }
+    { "name": "createmultisig", "params": [] },
+    { "name": "deriveaddresses", "params": [] },
+    { "name": "estimatesmartfee", "params": [] },
+    { "name": "getdescriptorinfo", "params": [] },
+    { "name": "getindexinfo", "params": [] },
+    { "name": "signmessagewithprivkey", "params": [] },
+    { "name": "validateaddress", "params": [] },
+    { "name": "verifymessage", "params": [] }
   ],
   "walletrpcs": [
-    {
-      "name": "abandontransaction",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "abortrescan",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "addmultisigaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "backupwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "bumpfee",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "createwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "dumpprivkey",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "dumpwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "encryptwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getaddressbylabel",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getaddressinfo",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getbalance",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getbalances",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getnewaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getrawchangeaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getreceivedbyaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getreceivedbylabel",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "gettransaction",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getunconfirmedbalance",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "getwalletinfo",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "importaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "importdescriptors",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "importmulti",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "importprivkey",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "importprunedfunds",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "importpubkey",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "importwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "keypoolrefill",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listaddressgroupings",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listlabels",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listlockunspent",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listreceivedbyaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listreceivedbylabel",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listsinceblock",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listtransactions",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listunspent",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listwalletdir",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "listwallets",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "loadwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "lockunspent",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "psbtbumpfee",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "removeprunedfunds",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "rescanblockchain",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "send",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "sendmany",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "sendtoaddress",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "sethdseed",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "setlabel",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "settxfee",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "setwalletflag",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "signmessage",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "signrawtransactionwithwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "unloadwallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "upgradewallet",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "walletcreatefundedpsbt",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "walletlock",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "walletpassphrase",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "walletpassphrasechange",
-      "params": [],
-      "result": {}
-    },
-    {
-      "name": "walletprocesspsbt",
-      "params": [],
-      "result": {}
-    }
+    { "name": "abandontransaction", "params": [] },
+    { "name": "abortrescan", "params": [] },
+    { "name": "addmultisigaddress", "params": [] },
+    { "name": "backupwallet", "params": [] },
+    { "name": "bumpfee", "params": [] },
+    { "name": "createwallet", "params": [] },
+    { "name": "dumpprivkey", "params": [] },
+    { "name": "dumpwallet", "params": [] },
+    { "name": "encryptwallet", "params": [] },
+    { "name": "getaddressbylabel", "params": [] },
+    { "name": "getaddressinfo", "params": [] },
+    { "name": "getbalance", "params": [] },
+    { "name": "getbalances", "params": [] },
+    { "name": "getnewaddress", "params": [] },
+    { "name": "getrawchangeaddress", "params": [] },
+    { "name": "getreceivedbyaddress", "params": [] },
+    { "name": "getreceivedbylabel", "params": [] },
+    { "name": "gettransaction", "params": [] },
+    { "name": "getunconfirmedbalance", "params": [] },
+    { "name": "getwalletinfo", "params": [] },
+    { "name": "importaddress", "params": [] },
+    { "name": "importdescriptors", "params": [] },
+    { "name": "importmulti", "params": [] },
+    { "name": "importprivkey", "params": [] },
+    { "name": "importprunedfunds", "params": [] },
+    { "name": "importpubkey", "params": [] },
+    { "name": "importwallet", "params": [] },
+    { "name": "keypoolrefill", "params": [] },
+    { "name": "listaddressgroupings", "params": [] },
+    { "name": "listlabels", "params": [] },
+    { "name": "listlockunspent", "params": [] },
+    { "name": "listreceivedbyaddress", "params": [] },
+    { "name": "listreceivedbylabel", "params": [] },
+    { "name": "listsinceblock", "params": [] },
+    { "name": "listtransactions", "params": [] },
+    { "name": "listunspent", "params": [] },
+    { "name": "listwalletdir", "params": [] },
+    { "name": "listwallets", "params": [] },
+    { "name": "loadwallet", "params": [] },
+    { "name": "lockunspent", "params": [] },
+    { "name": "psbtbumpfee", "params": [] },
+    { "name": "removeprunedfunds", "params": [] },
+    { "name": "rescanblockchain", "params": [] },
+    { "name": "send", "params": [] },
+    { "name": "sendmany", "params": [] },
+    { "name": "sendtoaddress", "params": [] },
+    { "name": "sethdseed", "params": [] },
+    { "name": "setlabel", "params": [] },
+    { "name": "settxfee", "params": [] },
+    { "name": "setwalletflag", "params": [] },
+    { "name": "signmessage", "params": [] },
+    { "name": "signrawtransactionwithwallet", "params": [] },
+    { "name": "unloadwallet", "params": [] },
+    { "name": "upgradewallet", "params": [] },
+    { "name": "walletcreatefundedpsbt", "params": [] },
+    { "name": "walletlock", "params": [] },
+    { "name": "walletpassphrase", "params": [] },
+    { "name": "walletpassphrasechange", "params": [] },
+    { "name": "walletpassphrase", "params": [] }
   ]
 }
