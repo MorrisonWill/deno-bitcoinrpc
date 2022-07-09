@@ -1,8 +1,8 @@
 interface Args {
   host: string;
   port: number;
-  user?: string;
-  pass?: string;
+  username?: string;
+  password?: string;
 }
 
 export default class BitcoinRPC {
@@ -11,6 +11,10 @@ export default class BitcoinRPC {
   user?: string;
   pass?: string;
 
+  /** Make a request to the Bitcoin JSON RPC.
+   * @param {string} method - The method to call.
+   * @param {any[]} params - The parameters to pass to the method.
+   */
   async request(method: string, params: any[]) {
     const headers = new Headers({
       "Content-Type": "application/json",
@@ -38,19 +42,15 @@ export default class BitcoinRPC {
     return Promise.reject(new Error(json.error.message));
   }
 
-  constructor({ host, port, user, pass }: Args) {
+  /** initializes a new instance of the BitcoinRPC class.
+   * @param {Args} args - The arguments to create the BitcoinRPC - host, port, username, password.
+   */
+  constructor({ host, port, username, password }: Args) {
     this.url = `http://${host}:${port}`;
-    if (user && pass) {
+    if (username && password) {
       this.auth = true;
-      this.user = user;
-      this.pass = pass;
+      this.user = username;
+      this.pass = password;
     }
   }
 }
-
-// const client = new BitcoinRPC({
-//   host: "localhost",
-//   port: 18332,
-//   user: "user",
-//   pass: "pass",
-// });

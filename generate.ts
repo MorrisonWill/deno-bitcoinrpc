@@ -22,6 +22,8 @@ type Methods = {
 
 const methods: Methods = JSON.parse(Deno.readTextFileSync("methods.json"));
 
+const docBase = "https://developer.bitcoin.org/reference/rpc/";
+
 const project = new Project();
 
 const originalClient = project.addSourceFileAtPath("./client.ts");
@@ -31,10 +33,9 @@ project.addSourceFileAtPath(
   "./mod.ts",
 );
 
-// TODO: scrape docs for JSDoc comment
-
+// TODO: scrape the arguments from the documentation for JSDoc
 async function getDescription(name: string) {
-  const url = `https://developer.bitcoin.org/reference/rpc/${name}.html`;
+  const url = `${docBase}${name}.html`;
   const res = await fetch(url);
   const html = await res.text();
   const doc = new DOMParser().parseFromString(html, "text/html");
@@ -49,12 +50,14 @@ async function getDescription(name: string) {
   return description;
 }
 
-let descriptions = new Map<string, string>();
+await getDescription("signmessage");
 
-// TODO: finish all methods, fix up the ones with more complex args
+// map if descriptions.json is not present
+// let descriptions = new Map<string, string>();
 
 for (const [_, calls] of Object.entries(methods)) {
   for (const call of calls) {
+    // getting descriptions
     // const description = await getDescription(call.name);
     // descriptions.set(call.name, description);
 
@@ -63,7 +66,6 @@ for (const [_, calls] of Object.entries(methods)) {
     );
     const description = descriptions[call.name];
 
-    // save descriptions to a file
     const client = clientCopy.getClass("BitcoinRPC");
     if (client === undefined) {
       throw new Error("BitcoinRPC class not found");
@@ -86,7 +88,7 @@ for (const [_, calls] of Object.entries(methods)) {
     });
 
     methodDeclaration.addJsDoc({
-      description: description,
+      description: description + "\n" + `${docBase}${call.name}.html`,
     });
 
     for (const param of call.params) {
@@ -99,6 +101,7 @@ for (const [_, calls] of Object.entries(methods)) {
   await project.save();
 }
 
+// writing to descriptions file
 // Deno.writeTextFileSync(
 //   "./descriptions.json",
 //   JSON.stringify(Object.fromEntries(descriptions)),

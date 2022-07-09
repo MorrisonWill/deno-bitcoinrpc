@@ -32,7 +32,7 @@
       "name": "getblockstats",
       "params": [
         { "name": "hash_or_height", "type": "number | string" },
-        { "name": "stats?", "type": "Array<{height: string, time: string}>" }
+        { "name": "stats?", "type": "Array<string>" }
       ]
     },
     { "name": "getchaintips", "params": [] },
@@ -104,7 +104,7 @@
         { "name": "action", "type": "string" },
         {
           "name": "scanobjects?",
-          "type": "Array<string | {desc: string, range: number | Array<number>}>"
+          "type": "Array<string | {desc: string, range?: number | Array<number>}>"
         }
       ]
     },
@@ -168,7 +168,7 @@
       "params": [
         {
           "name": "template_request",
-          "type": "{mode: string, capabilities: Array<string>}"
+          "type": "{mode?: string, capabilities?: Array<string>}"
         }
       ]
     },
@@ -268,7 +268,7 @@
       "params": [
         {
           "name": "inputs",
-          "type": "Array<{txid: string, vout: number, sequence: number}>"
+          "type": "Array<{txid: string, vout?: number, sequence?: number}>"
         },
         {
           "name": "outputs",
@@ -283,7 +283,7 @@
       "params": [
         {
           "name": "inputs",
-          "type": "Array<{txid: string, vout: number, sequence: number}>"
+          "type": "Array<{txid: string, vout: number, sequence?: number}>"
         },
         {
           "name": "output",
@@ -318,7 +318,7 @@
         { "name": "hexstring", "type": "string" },
         {
           "name": "options?",
-          "type": "{add_inputs: boolean, changeAddress: string, changePosition: number, change_type: string, includeWatching: boolean, lockUnspents: boolean, fee_rate: number, feeRate: number, subtractFeeFromOutputs: Array<number>}"
+          "type": "{add_inputs?: boolean, changeAddress?: string, changePosition?: number, change_type?: string, includeWatching?: boolean, lockUnspents?: boolean, fee_rate?: number | string, feeRate?: number | string, subtractFeeFromOutputs?: Array<number>}"
         },
         { "name": "iswitness?", "type": "boolean" }
       ]
@@ -349,7 +349,7 @@
         { "name": "privkeys", "type": "Array<string>" },
         {
           "name": "prevtxs?",
-          "type": "Array<{txid: string, vout: number, scriptPubKey: string, redeemScript: string, witnessScript: string, amount: number}>"
+          "type": "Array<{txid: string, vout: number, scriptPubKey: string, redeemScript: string, witnessScript: string, amount?: number}>"
         },
         { "name": "sighashtype?", "type": "string" }
       ]
@@ -367,80 +367,896 @@
         { "name": "psbt", "type": "string" },
         {
           "name": "descriptors?",
-          "type": "Array<string | {desc: string, range: number | Array<number>}>"
+          "type": "Array<string | {desc: string, range?: number | Array<number>}>"
         }
       ]
     }
   ],
   "util": [
-    { "name": "createmultisig", "params": [] },
-    { "name": "deriveaddresses", "params": [] },
-    { "name": "estimatesmartfee", "params": [] },
-    { "name": "getdescriptorinfo", "params": [] },
-    { "name": "getindexinfo", "params": [] },
-    { "name": "signmessagewithprivkey", "params": [] },
-    { "name": "validateaddress", "params": [] },
-    { "name": "verifymessage", "params": [] }
+    {
+      "name": "createmultisig",
+      "params": [
+        {
+          "name": "nrequired",
+          "type": "number"
+        },
+        {
+          "name": "keys",
+          "type": "Array<string>"
+        }
+      ]
+    },
+    {
+      "name": "deriveaddresses",
+      "params": [
+        {
+          "name": "descriptor",
+          "type": "string"
+        },
+        {
+          "name": "range?",
+          "type": "number | Array<number>"
+        }
+      ]
+    },
+    {
+      "name": "estimatesmartfee",
+      "params": [
+        {
+          "name": "conf_target",
+          "type": "number"
+        },
+        {
+          "name": "estimate_mode?",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getdescriptorinfo",
+      "params": [
+        {
+          "name": "descriptor",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getindexinfo",
+      "params": [
+        {
+          "name": "index_name",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "signmessagewithprivkey",
+      "params": [
+        {
+          "name": "privkey",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "validateaddress",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "verifymessage",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "signature",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    }
   ],
   "walletrpcs": [
-    { "name": "abandontransaction", "params": [] },
+    {
+      "name": "abandontransaction",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        }
+      ]
+    },
     { "name": "abortrescan", "params": [] },
-    { "name": "addmultisigaddress", "params": [] },
-    { "name": "backupwallet", "params": [] },
-    { "name": "bumpfee", "params": [] },
-    { "name": "createwallet", "params": [] },
-    { "name": "dumpprivkey", "params": [] },
-    { "name": "dumpwallet", "params": [] },
-    { "name": "encryptwallet", "params": [] },
-    { "name": "getaddressbylabel", "params": [] },
-    { "name": "getaddressinfo", "params": [] },
-    { "name": "getbalance", "params": [] },
+    {
+      "name": "addmultisigaddress",
+      "params": [
+        {
+          "name": "nrequired",
+          "type": "number"
+        },
+        {
+          "name": "keys",
+          "type": "Array<string>"
+        },
+        {
+          "name": "label?",
+          "type": "string"
+        },
+        {
+          "name": "address_type?",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "backupwallet",
+      "params": [
+        {
+          "name": "destination",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "bumpfee",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "options?",
+          "type": "{conf_target?: number, fee_rate?: number | string, replaceable?: boolean, estimate_mode?: string}"
+        }
+      ]
+    },
+    {
+      "name": "createwallet",
+      "params": [
+        {
+          "name": "wallet_name",
+          "type": "string"
+        },
+        {
+          "name": "disable_private_keys?",
+          "type": "boolean"
+        },
+        {
+          "name": "blank?",
+          "type": "boolean"
+        },
+        {
+          "name": "passphrase?",
+          "type": "string"
+        },
+        {
+          "name": "avoid_reuse?",
+          "type": "boolean"
+        },
+        {
+          "name": "descriptors?",
+          "type": "boolean"
+        },
+        {
+          "name": "load_on_startup?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "dumpprivkey",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "dumpwallet",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "encryptwallet",
+      "params": [
+        {
+          "name": "passphrase",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getaddressbylabel",
+      "params": [
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getaddressinfo",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getbalance",
+      "params": [
+        {
+          "name": "dummy",
+          "type": "string"
+        },
+        {
+          "name": "minconf?",
+          "type": "number"
+        },
+        {
+          "name": "include_watchonly?",
+          "type": "boolean"
+        },
+        {
+          "name": "avoid_reuse?",
+          "type": "boolean"
+        }
+      ]
+    },
     { "name": "getbalances", "params": [] },
-    { "name": "getnewaddress", "params": [] },
-    { "name": "getrawchangeaddress", "params": [] },
-    { "name": "getreceivedbyaddress", "params": [] },
-    { "name": "getreceivedbylabel", "params": [] },
-    { "name": "gettransaction", "params": [] },
+    {
+      "name": "getnewaddress",
+      "params": [
+        {
+          "name": "label?",
+          "type": "string"
+        },
+        {
+          "name": "address_type?",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getrawchangeaddress",
+      "params": [
+        {
+          "name": "address_type?",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "getreceivedbyaddress",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "minconf?",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "getreceivedbylabel",
+      "params": [
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "minconf?",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "gettransaction",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "include_watchonly?",
+          "type": "boolean"
+        },
+        {
+          "name": "verbose?",
+          "type": "boolean"
+        }
+      ]
+    },
     { "name": "getunconfirmedbalance", "params": [] },
     { "name": "getwalletinfo", "params": [] },
-    { "name": "importaddress", "params": [] },
-    { "name": "importdescriptors", "params": [] },
-    { "name": "importmulti", "params": [] },
-    { "name": "importprivkey", "params": [] },
-    { "name": "importprunedfunds", "params": [] },
-    { "name": "importpubkey", "params": [] },
-    { "name": "importwallet", "params": [] },
-    { "name": "keypoolrefill", "params": [] },
+    {
+      "name": "importaddress",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "label?",
+          "type": "string"
+        },
+        {
+          "name": "rescan?",
+          "type": "boolean"
+        },
+        {
+          "name": "p2sh?",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "importdescriptors",
+      "params": [
+        {
+          "name": "requests",
+          "type": "Array<{desc: string, active?: boolean, range: number | Array<number>, next_index: number, timestamp: number | string, internal?: boolean, label?: string}>"
+        }
+      ]
+    },
+    {
+      "name": "importmulti",
+      "params": [
+        {
+          "name": "requests",
+          "type": "Array<{desc: string, scriptPubKey?: string | object, timestamp: number | string, redeemscript?: string, witnessscript?: string, pubkeys?: Array<string>, keys?: Array<string>}>"
+        },
+        {
+          "name": "options?",
+          "type": "{rescan: boolean}"
+        }
+      ]
+    },
+    {
+      "name": "importprivkey",
+      "params": [
+        {
+          "name": "privkey",
+          "type": "string"
+        },
+        {
+          "name": "label?",
+          "type": "string"
+        },
+        {
+          "name": "rescan?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "importprunedfunds",
+      "params": [
+        {
+          "name": "rawtransaction",
+          "type": "string"
+        },
+        {
+          "name": "txoutproof",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "importpubkey",
+      "params": [
+        {
+          "name": "pubkey",
+          "type": "string"
+        },
+        {
+          "name": "label?",
+          "type": "string"
+        },
+        {
+          "name": "rescan?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "importwallet",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "keypoolrefill",
+      "params": [
+        {
+          "name": "newsize?",
+          "type": "number"
+        }
+      ]
+    },
     { "name": "listaddressgroupings", "params": [] },
-    { "name": "listlabels", "params": [] },
+    {
+      "name": "listlabels",
+      "params": [
+        {
+          "name": "purpose?",
+          "type": "string"
+        }
+      ]
+    },
     { "name": "listlockunspent", "params": [] },
-    { "name": "listreceivedbyaddress", "params": [] },
-    { "name": "listreceivedbylabel", "params": [] },
-    { "name": "listsinceblock", "params": [] },
-    { "name": "listtransactions", "params": [] },
-    { "name": "listunspent", "params": [] },
+    {
+      "name": "listreceivedbyaddress",
+      "params": [
+        {
+          "name": "minconf?",
+          "type": "number"
+        },
+        {
+          "name": "include_empty?",
+          "type": "boolean"
+        },
+        {
+          "name": "include_watchonly?",
+          "type": "boolean"
+        },
+        {
+          "name": "address_filter?",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "listreceivedbylabel",
+      "params": [
+        {
+          "name": "minconf?",
+          "type": "number"
+        },
+        {
+          "name": "include_empty?",
+          "type": "boolean"
+        },
+        {
+          "name": "include_watchonly?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "listsinceblock",
+      "params": [
+        {
+          "name": "blockhash?",
+          "type": "string"
+        },
+        {
+          "name": "target_confirmations?",
+          "type": "number"
+        },
+        {
+          "name": "include_watchonly?",
+          "type": "boolean"
+        },
+        {
+          "name": "include_removed?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "listtransactions",
+      "params": [
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "count?",
+          "type": "number"
+        },
+        {
+          "name": "skip?",
+          "type": "number"
+        },
+        {
+          "name": "include_watchonly?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "listunspent",
+      "params": [
+        {
+          "name": "minconf?",
+          "type": "number"
+        },
+        {
+          "name": "maxconf?",
+          "type": "number"
+        },
+        {
+          "name": "addresses?",
+          "type": "Array<string>"
+        },
+        {
+          "name": "include_unsafe?",
+          "type": "boolean"
+        },
+        {
+          "name": "query_options?",
+          "type": "object"
+        }
+      ]
+    },
     { "name": "listwalletdir", "params": [] },
     { "name": "listwallets", "params": [] },
-    { "name": "loadwallet", "params": [] },
-    { "name": "lockunspent", "params": [] },
-    { "name": "psbtbumpfee", "params": [] },
-    { "name": "removeprunedfunds", "params": [] },
-    { "name": "rescanblockchain", "params": [] },
-    { "name": "send", "params": [] },
-    { "name": "sendmany", "params": [] },
-    { "name": "sendtoaddress", "params": [] },
-    { "name": "sethdseed", "params": [] },
-    { "name": "setlabel", "params": [] },
-    { "name": "settxfee", "params": [] },
-    { "name": "setwalletflag", "params": [] },
-    { "name": "signmessage", "params": [] },
-    { "name": "signrawtransactionwithwallet", "params": [] },
-    { "name": "unloadwallet", "params": [] },
-    { "name": "upgradewallet", "params": [] },
-    { "name": "walletcreatefundedpsbt", "params": [] },
+    {
+      "name": "loadwallet",
+      "params": [
+        {
+          "name": "filename",
+          "type": "string"
+        },
+        {
+          "name": "load_on_startup?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "lockunspent",
+      "params": [
+        {
+          "name": "unlock",
+          "type": "boolean"
+        },
+        {
+          "name": "transactions",
+          "type": "Array<{txid: string, vout: number}>"
+        }
+      ]
+    },
+    {
+      "name": "psbtbumpfee",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        },
+        {
+          "name": "options",
+          "type": "{conf_target?: number, fee_rate?: number, replaceable?: boolean, estimate_mode?: string}"
+        }
+      ]
+    },
+    {
+      "name": "removeprunedfunds",
+      "params": [
+        {
+          "name": "txid",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "rescanblockchain",
+      "params": [
+        {
+          "name": "start_height?",
+          "type": "number"
+        },
+        {
+          "name": "stop_height?",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "send",
+      "params": [
+        {
+          "name": "outputs",
+          "type": "Array<{address: string} | {data: string}>"
+        },
+        {
+          "name": "conf_target?",
+          "type": "number"
+        },
+        {
+          "name": "estimate_mode?",
+          "type": "string"
+        },
+        {
+          "name": "fee_rate?",
+          "type": "number"
+        },
+        {
+          "name": "options?",
+          "type": "{add_inputs?: boolean, add_to_wallet?: boolean, change_address?: string, change_position?: number, change_type?: string, conf_target?: number, estimate_mode?: string, fee_rate?: number | string, include_watching?: boolean, inputs?: Array<{txid: string, vout: number, sequence: number}>}"
+        }
+      ]
+    },
+    {
+      "name": "sendmany",
+      "params": [
+        {
+          "name": "dummy",
+          "type": "string"
+        },
+        {
+          "name": "amounts",
+          "type": "object"
+        },
+        {
+          "name": "minconf?",
+          "type": "number"
+        },
+        {
+          "name": "comment?",
+          "type": "string"
+        },
+        {
+          "name": "subtractfeefrom?",
+          "type": "Array<string>"
+        },
+        {
+          "name": "replaceable?",
+          "type": "boolean"
+        },
+        {
+          "name": "conf_target?",
+          "type": "number"
+        },
+        {
+          "name": "estimate_mode?",
+          "type": "string"
+        },
+        {
+          "name": "fee_rate?",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "sendtoaddress",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "amount",
+          "type": "number | string"
+        },
+        {
+          "name": "comment?",
+          "type": "string"
+        },
+        {
+          "name": "comment_to?",
+          "type": "string"
+        },
+        {
+          "name": "subtractfeefromamount?",
+          "type": "boolean"
+        },
+        {
+          "name": "replaceable?",
+          "type": "boolean"
+        },
+        {
+          "name": "conf_target?",
+          "type": "number"
+        },
+        {
+          "name": "estimate_mode?",
+          "type": "string"
+        },
+        {
+          "name": "avoid_reuse?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "sethdseed",
+      "params": [
+        {
+          "name": "newkeypool?",
+          "type": "string"
+        },
+        {
+          "name": "seed?",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "setlabel",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "label",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "settxfee",
+      "params": [
+        {
+          "name": "amount",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "setwalletflag",
+      "params": [
+        {
+          "name": "flag",
+          "type": "string"
+        },
+        {
+          "name": "value?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "signmessage",
+      "params": [
+        {
+          "name": "address",
+          "type": "string"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "signrawtransactionwithwallet",
+      "params": [
+        {
+          "name": "hexstring",
+          "type": "string"
+        },
+        {
+          "name": "prevtxs",
+          "type": "Array<{txid: string, vout: number, scriptPubKey: string, redeemScript?: string, witnessScript?: string, amount: number | string}>"
+        },
+        {
+          "name": "sighashtype",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "unloadwallet",
+      "params": [
+        {
+          "name": "wallet_name?",
+          "type": "string"
+        },
+        {
+          "name": "load_on_startup?",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "upgradewallet",
+      "params": [
+        {
+          "name": "version",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "walletcreatefundedpsbt",
+      "params": [
+        {
+          "name": "inputs",
+          "type": "Array<{txid: string, vout: number, sequence: number}>"
+        },
+        {
+          "name": "outputs",
+          "type": "Array<{address: string} | {data: string}>"
+        },
+        {
+          "name": "locktime?",
+          "type": "number"
+        },
+        {
+          "name": "options?",
+          "type": "object"
+        },
+        {
+          "name": "bip32derivs?",
+          "type": "boolean"
+        }
+      ]
+    },
     { "name": "walletlock", "params": [] },
-    { "name": "walletpassphrase", "params": [] },
-    { "name": "walletpassphrasechange", "params": [] },
-    { "name": "walletpassphrase", "params": [] }
+    {
+      "name": "walletpassphrase",
+      "params": [
+        {
+          "name": "passphrase",
+          "type": "string"
+        },
+        {
+          "name": "timeout",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "walletpassphrasechange",
+      "params": [
+        {
+          "name": "old_passphrase",
+          "type": "string"
+        },
+        {
+          "name": "new_passphrase",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "walletprocesspsbt",
+      "params": [
+        {
+          "name": "psbt",
+          "type": "string"
+        },
+        {
+          "name": "sign?",
+          "type": "boolean"
+        },
+        {
+          "name": "sighashtype?",
+          "type": "string"
+        },
+        {
+          "name": "bip32derivs?",
+          "type": "boolean"
+        }
+      ]
+    }
   ]
 }
