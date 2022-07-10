@@ -873,7 +873,7 @@
       "name": "listtransactions",
       "params": [
         {
-          "name": "label",
+          "name": "label?",
           "type": "string"
         },
         {
@@ -983,7 +983,7 @@
       "params": [
         {
           "name": "outputs",
-          "type": "Array<{address: string} | {data: string}>"
+          "type": "Array<{[address: string]: string | number} | {data: string}>"
         },
         {
           "name": "conf_target?",
@@ -999,7 +999,7 @@
         },
         {
           "name": "options?",
-          "type": "{add_inputs?: boolean, add_to_wallet?: boolean, change_address?: string, change_position?: number, change_type?: string, conf_target?: number, estimate_mode?: string, fee_rate?: number | string, include_watching?: boolean, inputs?: Array<{txid: string, vout: number, sequence: number}>}"
+          "type": "{add_inputs?: boolean, add_to_wallet?: boolean, change_address?: string, change_position?: number, change_type?: string, subtract_fee_from_outputs?: Array<number>, conf_target?: number, estimate_mode?: string, fee_rate?: number | string, include_watching?: boolean, inputs?: Array<{txid: string, vout: number, sequence: number}>}"
         }
       ]
     },

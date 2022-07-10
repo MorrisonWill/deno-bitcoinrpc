@@ -1,5 +1,5 @@
 <h1 align="center">bitcoin_rpc</h1>
-<p align="center"><b>Bitcoin RPC Library for Deno</b></p>
+<p align="center">Bitcoin RPC Library for Deno</p>
 
 ## Usage
 
