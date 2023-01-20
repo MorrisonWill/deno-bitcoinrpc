@@ -532,7 +532,7 @@ export default class BitcoinRPC {
      * Create a transaction spending the given inputs and creating new outputs.
      * https://developer.bitcoin.org/reference/rpc/createrawtransaction.html
      */
-    async createrawtransaction(inputs: Array<{txid: string, vout: number, sequence?: number}>, output: Array<{address: number} | {address: string} | {data: string}>, locktime?: number, replaceable?: boolean) {
+    async createrawtransaction(inputs: Array<{txid: string, vout: number, sequence?: number}>, output: Array<{[address: string]: number} | {[address: string]: string} | {data: string}>, locktime?: number, replaceable?: boolean) {
         return await this.request("createrawtransaction", [inputs, output, locktime, replaceable]);
     }
 
