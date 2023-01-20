@@ -16,9 +16,10 @@ export default class BitcoinRPC {
    * @param {any[]} params - The parameters to pass to the method.
    */
   async request(method: string, params: any[]) {
+    console.log("request", method, params);
     const headers = new Headers({
       "Content-Type": "application/json",
-      "Authorization": this.auth
+      Authorization: this.auth
         ? `Basic ${btoa(`${this.user}:${this.pass}`)}`
         : "",
     });
