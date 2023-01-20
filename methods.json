@@ -1154,11 +1154,11 @@
           "type": "string"
         },
         {
-          "name": "prevtxs",
+          "name": "prevtxs?",
           "type": "Array<{txid: string, vout: number, scriptPubKey: string, redeemScript?: string, witnessScript?: string, amount: number | string}>"
         },
         {
-          "name": "sighashtype",
+          "name": "sighashtype?",
           "type": "string"
         }
       ]

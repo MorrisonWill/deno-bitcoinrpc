@@ -1113,7 +1113,7 @@ export default class BitcoinRPC {
      * Sign inputs for raw transaction (serialized, hex-encoded).
      * https://developer.bitcoin.org/reference/rpc/signrawtransactionwithwallet.html
      */
-    async signrawtransactionwithwallet(hexstring: string, prevtxs: Array<{txid: string, vout: number, scriptPubKey: string, redeemScript?: string, witnessScript?: string, amount: number | string}>, sighashtype: string) {
+    async signrawtransactionwithwallet(hexstring: string, prevtxs?: Array<{txid: string, vout: number, scriptPubKey: string, redeemScript?: string, witnessScript?: string, amount: number | string}>, sighashtype?: string) {
         return await this.request("signrawtransactionwithwallet", [hexstring, prevtxs, sighashtype]);
     }
 
